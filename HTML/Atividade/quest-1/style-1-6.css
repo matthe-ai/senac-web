@@ -1,0 +1,184 @@
+.emoji{
+    width: 300px;
+}
+
+*{
+    align-items: center;
+    margin: 5px;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(250, 235, 215);
+    font-size: 20px;
+    text-align: center;
+}
+
+.email{
+    color: blue;
+    text-decoration: underline;
+}
+
+.instagram{
+    width: 15px;
+}
+
+.cont-ig{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+footer{
+    padding: 10px;
+    line-height: 30px;
+}
+
+.barra{
+    display: flex;
+    text-align: center;
+    gap: 25px;
+    background-color: rgb(143, 146, 146);
+    justify-content: center;
+    border-radius: 30px;
+}
+
+.barra a{
+    text-decoration: none;
+    color: white;
+    transition-duration: 0.5s;
+}
+
+.barra a:hover{
+    color: blue;
+}
+
+.inicio:hover{
+    color: white;
+}
+
+.projetos:hover{
+    color: white;
+}
+
+.contato:hover{
+    color: white;
+}
+
+.no-point{
+    list-style: none;
+}
+
+#hobbie{
+    list-style:circle;
+    font-size: 30px;
+    margin: auto;
+    width: 300px;
+    text-align: left;
+}
+
+#meta{
+    list-style: upper-roman;
+    font-size: 30px;
+    margin: auto;
+    width: 300px;
+    text-align: left;
+}
+
+.font{
+    font-family: Impact;
+    color: white;
+    font-size: 30px;
+}
+
+.m-font{
+    font-size: 30px;
+    color: #7A5D36;
+    font-family: Impact;;
+}
+
+input{
+    border-radius: 15px;
+    border: none;
+    height: 25px;
+    text-align: left;
+    padding-left: 15px;
+    width: 300px;
+    padding: 5px;
+}
+
+textarea{
+    border-radius: 15px;
+    border: none;
+    height: 30px;
+    text-align: left;
+    padding-left: 15px;
+    width: 300px;
+    padding: 5px;
+}
+
+.text-area{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button{
+    border: none;
+    height: 50px;
+    width: 70px;
+    background-color: brown;
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+button:hover{
+    background-color: rgb(95, 23, 23);
+}
+
+.tres-card{
+    display: flex;
+    margin: 0 auto;
+    gap: 30px;
+    justify-content: center;
+}
+
+.hobbie-card{
+    background-color:#163B50;
+    width: 25%;
+    height: 500px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.img-list{
+    height: 400px;
+    width: 400px;
+    border-radius: 30px;
+}
+
+.dois-card{
+    display: flex;
+    margin: 0 auto;
+    gap: 30px;
+    justify-content: center;
+}
+
+.grad{
+    height: 350px;
+    color: white;
+    width: 500px;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    background:linear-gradient(#331F05,#503716,#A58964,#CFBBA0,#FAEBD7);
+}

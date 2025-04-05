@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <!--Define os caracteres que vão ser usados-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeira aula de HTML e CSS</title>
+    <!--Define o titulo-->
+    <link rel="stylesheet" href="style.css">
+    <!--Importa o arquivo CSS externo para essa página-->
+</head>
+<body>
+    <!--Barra de navegação-->
+    <nav>
+        <!--Lista desorenada-->
+        <ul class="menu">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </nav>
+    <!--Cabeçalho-->
+    <header>
+        <section name="joinha">
+            <!--A tag img serve para inserir imagens no HTML-->
+            <img src="https://media.tenor.com/gRNhbdpYwxcAAAAm/picardia-thumbsup.webp" alt="emoje de like" class="imagem-exemplo">
+        </section>
+        <section name="Titulo">
+            <h1>Este é meu primeiro site</h1>
+            <p>Aprendendo a construir e estilizar paginas com CSS</p>
+        </section>
+    </header>
+    <!--Parte principal-->
+    <main>
+        <section class="container">
+            <!--h2 serve para fazer um sub-titulo-->
+            <h2>Hello world</h2>
+            <p>Este é um exemplo básico para entender a estrutura do site</p>
+            <br>
+            <h3>O que aprendemos hoje</h3>
+            <br>
+            <ul class="lista-topicos">
+                <li>Estrutura básica de HTML</li>
+                <li>Como importar um arquivo CSS para estilizar</li>
+                <li>Como modificar elementos através do CSS</li>
+            </ul>
+            <!-- button serve para criar um botão-->
+            <button type="submit" class="botao">Clique aqui para ganhar 1 milhão de reais</button>
+        </section>
+        <!--Sessão para entrar em contato-->
+        <section class="formulario">
+            <h3>Fale comigo 👍</h3>
+            <!--form serve para criar formularios-->
+            <form>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" placeholder="Digite seu nome" required>
+
+                <label for="mensagem">Mensagem:</label>
+                <textarea name="mensagem" id="mensagem" placeholder="Escreva sua mensagem" required></textarea>
+
+                <button type="submit" class="botao">Enviar</button>
+            </form>
+        </section>
+    </main>
+    <!--Rodapé-->
+    <footer class="footer">
+        <p>Desenvolvido por Mattheus</p>
+    </footer>
+</body>
+</html>

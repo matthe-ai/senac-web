@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Meu portifólio</title>
+</head>
+<body>
+    <!--Cabeçalho-->
+    <header>
+        <nav class="barra">
+            <!--Barra de navegação-->
+            <ul>
+                <li><a href="#">Inicío</a></li>
+                <li><a href="#">Projetos</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!--Corpo-->
+    <main>
+        <h1 class="titulo">Sobre mim</h1>
+        <section class="flex">
+        <!--Apresentação-->
+        <!--Foto-->
+            <div>
+                <img class="eu-img" src="minha-foto.jpg" alt="Minha foto"> <!--Imagem de perfil-->
+            </div>
+        <section class="text-eu">
+            <!--Sobre mim-->
+            <h2>Mattheus Kauã</h2>
+            <p id="eu">Olá, meu nome é Mattheus e estou cursando o curso de programador web na instituição SENAC. Tenho um pouco de experiência na área da programação com python, c, c++ e agora estou aprendendo sobre HTML, CSS e provavelmente algumas outras mais para frente uma vez que além deste curso, eu passei na faculdade de ciência da computação.</p>
+        </section>
+        </section>
+
+        <!--Projetos-->
+        <section>
+            <!--Três projetos-->
+            <h1 class="titulo">Projetos</h1>
+            <div class="flex espaco">
+                <div class="proj" id="mochileiro">
+                    <h2>Guia do mochileiro</h2>
+                    <p>Um site pessoal para viajantes que desejam compartilhar suas aventuras e dicas de viagem.</p>
+                    <button id="b-mochi">Ver mais</button>
+                </div>
+                <div class="proj espaco" id="receita">
+                    <h2>Receitas do mundo</h2>
+                    <p>Um banco de dados de receitas de todo o mundo. Os usuários podem pesquisar receitas por país.</p>
+                    <button>Ver mais</button>
+                </div>
+                <div class="proj espaco" id="biblioteca">
+                    <h2>A Biblioteca da Cidade</h2>
+                    <p>Um site para uma biblioteca pública em que os usuários podem pesquisar livros, revistas e outros materiais.</p>
+                    <button id="b-bibli">Ver mais</button>
+                </div>
+            </div>
+        </section>
+        <!--Contato-->
+        <section>
+            <h1 class="titulo">Contato</h1>
+            <form class="form">
+                <div class="info">
+                    <label for="nome">Nome: </label>
+                    <input type="text" required placeholder="Nome">
+                    <br>
+                    <label for="email">E-mail: </label>
+                    <input type="email" required placeholder="E-mail">
+                    <br>
+                </div>
+                <div class="msg">
+                    <label for="mensagem">Digite sua mensagem</label>
+                    <textarea name="mensagem" required></textarea>
+                </div>
+                <div class="b-form">
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <!--Rodapé-->
+    <footer class="rodape">
+        <!--Contato-->
+        <section class="contatos">
+            <h2>Redes sociais</h2>
+            <div class="whatsapp">
+                <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2044px-WhatsApp.svg.png" alt="Logo do whatsapp">
+                <p>(82) 99949-0757</p>
+            </div>
+            <div class="instagram">
+                <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1200px-Instagram_icon.png" alt="Logo do instagram">
+                <a href="#">@kaua.mattheus</a>
+            </div>
+            <div class="email">
+                <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/2560px-Gmail_icon_%282020%29.svg.png" alt="Logo do gmail">
+                <p>matthheuskaua2020@gmail.com</p>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>

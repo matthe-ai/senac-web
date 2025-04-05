@@ -1,0 +1,165 @@
+/**
+* ! Paleta de cores
+* * #5a0f19 bege bem escuro
+* * #8a3119 bege
+* * #945737 marrom claro
+* * #ebdacc bege claro
+*/
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #8a3119;
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 15px;
+    color: white;
+    font-size: 25px;
+    background-color: #5a0f19;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    transition-duration: .5s;
+}
+
+nav a:hover{
+    color: red;
+}
+
+nav li{
+    transition-duration: .5s;
+}
+
+nav li:hover{
+    transform: scale(1.2);
+}
+
+.capa{
+    max-width: 300px;
+    max-height: max-content;
+    border-radius: 20px;
+    margin-right: 15px;
+}
+
+.center{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ebdacc;
+}
+
+.texto-destaque{
+    width: 55%;
+    margin-right: 20px;
+}
+
+.texto-destaque p{
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: justify;
+    line-height: 1.5;
+}
+
+#espaco{
+    margin: 30px 0px 30px 0px;
+    font-size: 50px;
+    /* color: white; */
+}
+
+.texto-destaque h2{
+    font-size: 40px;
+}
+
+.vertical{
+    transform: rotate(90);
+    justify-items: center;
+}
+
+.destaque{
+    display: flex;
+    max-width: 80%;
+    height: 500px;
+    /* color: white; */
+    justify-content: center;
+    margin-left: 10%;
+    background-color: #945737;
+    padding: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    gap: 10px;
+}
+
+.butao{
+    background-color: #945737;
+    max-width: 80%;
+    margin-left: 10%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top: white solid 1px;
+    padding-top: 20px;
+}
+
+.butao a{
+    transition-duration: .5s;
+}
+
+.butao a:hover{
+    background-color: #ebdacc;
+    color: black;
+}
+
+.center a{
+    color: #ebdacc;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 22px;
+    padding: 15px 20px;
+    background-color: #5a0f19;
+}
+
+.review{
+    width: 55%;
+    margin-left: 20px;
+
+}
+
+.review h2{
+    font-size: 40px;
+}
+
+.review h3{
+    text-align: left;
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.review p{
+    /* width: 60%; */
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: justify;
+    line-height: 1.5;
+}
+
+.biblioteca{
+    max-width: 40%;
+}
