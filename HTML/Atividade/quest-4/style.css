@@ -5,7 +5,9 @@
 * * #945737 marrom claro
 * * #ebdacc bege claro
 */
-
+html{
+    scroll-behavior: smooth;
+}
 
 *{
     padding: 0;
@@ -50,7 +52,7 @@ nav li:hover{
     max-width: 300px;
     max-height: max-content;
     border-radius: 20px;
-    margin-right: 15px;
+    margin: 15px 20px 0px 15px;
 }
 
 .center{
@@ -61,7 +63,7 @@ nav li:hover{
 }
 
 .texto-destaque{
-    width: 55%;
+    /* width: 55%; */
     margin-right: 20px;
 }
 
@@ -73,7 +75,7 @@ nav li:hover{
     line-height: 1.5;
 }
 
-#espaco{
+.espaco{
     margin: 30px 0px 30px 0px;
     font-size: 50px;
     /* color: white; */
@@ -89,17 +91,17 @@ nav li:hover{
 }
 
 .destaque{
-    display: flex;
+    display: grid;
     max-width: 80%;
-    height: 500px;
+    height: auto;
     /* color: white; */
     justify-content: center;
     margin-left: 10%;
     background-color: #945737;
     padding: 10px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
     gap: 10px;
+    grid-template-columns: 1fr 3fr 2fr;
+    border-radius: 20px;
 }
 
 .butao{
@@ -110,10 +112,9 @@ nav li:hover{
     text-align: center;
     align-items: center;
     padding-bottom: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
     border-top: white solid 1px;
     padding-top: 20px;
+    grid-column: 2;
 }
 
 .butao a{
@@ -135,7 +136,7 @@ nav li:hover{
 }
 
 .review{
-    width: 55%;
+    /* width: 55%; */
     margin-left: 20px;
 
 }
@@ -162,4 +163,95 @@ nav li:hover{
 
 .biblioteca{
     max-width: 40%;
+}
+
+.container-livro{
+    display: grid;
+    /* grid-template-columns: repeat(4, 650px); */
+    grid-template-columns: 1fr 1fr;
+}
+
+.card{
+    background-color: #945737;
+    display: flex;
+    padding: 10px 10px 20px 10px;
+    border-radius: 20px;
+    color: white;
+    /* height: auto; */
+    margin: 30px 30px 0px 30px;
+    line-height: 1.5;
+    /* transform: scale(.5); */
+    transition-duration: 1s;
+    margin-bottom: 30px;
+}
+
+.texto-bib{
+    margin-right: 15px;
+}
+
+.card h2{
+    font-size: 30px;
+    text-align: center;
+}
+
+.card p{
+    font-size: 21px;
+    text-align: justify;
+}
+
+.card h3{
+    font-size: 20px;
+    text-align: right;
+}
+
+.sub-botao{
+    color: white;
+    text-decoration: none;
+    font-size: 60px;
+    left: calc(50% - 15px);
+    top: 50%;
+    position: fixed;
+}
+
+.sobre-nos{
+    display: flex;
+    margin: 30px;
+    gap: 25px;
+}
+
+.biblioteca{
+    border-radius: 20px;
+}
+
+.texto-sobre-nos{
+    color: white;
+}
+
+.texto-sobre-nos h1{
+    font-size: 50px;
+    text-align: center;
+}
+
+.texto-sobre-nos p{
+    font-size: 30px;
+}
+
+.lista{
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    margin-top: 100px;
+}
+
+.item-list{
+    color: white;
+    font-size: 30px;
+    background-color: #5a0f19;
+    padding: 30px;
+    border-radius: 20px;
+    transition-duration: 1s;
+}
+
+.item-list:hover{
+    transform: scale(1.5);
 }
