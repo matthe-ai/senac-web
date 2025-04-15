@@ -2,6 +2,9 @@ def caixa():
     notas_d = [100,50,20,10]
     valor = int(input("Digite o valor que você deseja retirar: "))
     notas_t = {}
+    if valor < 0:
+        print("Valores negativos são inválidos")
+        caixa()
     for i in notas_d:
         valor_n = valor//i
         valor_r = valor%i
