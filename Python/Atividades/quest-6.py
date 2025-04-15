@@ -5,4 +5,5 @@ def VerSenha():
         print("Pode continuar")
     else:
         print("Senha incorreta!")
+        VerSenha()
 VerSenha()

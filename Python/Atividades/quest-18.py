@@ -1,6 +1,6 @@
 def senha():
     senha = "senac123"
-    user = 0
+    user = ""
     while user != senha:
         user = input("Digite sua senha: ")
         if user == senha:
