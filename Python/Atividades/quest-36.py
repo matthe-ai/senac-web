@@ -9,7 +9,7 @@ def lista_media():
     media = statistics.mean(numeros)
     mediana = statistics.median(numeros)
     moda = statistics.mode(numeros)
-    print(f"A media dos números {numeros} é: {media}")
+    print(f"A media dos números {numeros} é: {media:.2f}")
     print(f"A mediana dos números {numeros} é: {mediana}")
     print(f"A moda dos números {numeros} é: {moda}")
 lista_media()
