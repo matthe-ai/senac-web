@@ -3,3 +3,4 @@ Sumario:
 * 11 - 20: questões de funções
 * 21 - 30: questões com laços "FOR" e "WHILE"
 * 31 - 40: questões de importação de bibliotecas
+* 41 - 45: questões de lista
