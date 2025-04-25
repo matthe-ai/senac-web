@@ -5,14 +5,11 @@ def adivinha():
         if numero_u == numero_s:
             print("Parabéns")
             break
+        if i == 2:
+            print("Suas chances acabaram")
+            break
         elif numero_u > numero_s:
-            if i == 2:
-                print("Suas chances acabaram")
-                break
             print("Menor")
         elif numero_u < numero_s:
-            if i == 2:
-                print("Suas chances acabaram")
-                break
             print("Maior")
 adivinha()
