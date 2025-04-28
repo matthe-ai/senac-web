@@ -1,5 +1,4 @@
 import time
-
 def menu():
     tarefas = []
     while True:
