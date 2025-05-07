@@ -21,6 +21,7 @@ Resposta: B
 ''' 
 Quest 5
 Resposta:
+
 class Carro:
     def __init__(self,modelo):
         self.modelo = modelo
@@ -47,6 +48,7 @@ Resposta: C
 ''' 
 Quest 9
 Resposta:
+
 Instanciar uma classe é criar um objeto para ela e fornecer o que ela precisa como por exemplo:
 
 class Moto:

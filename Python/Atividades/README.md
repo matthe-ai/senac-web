@@ -6,3 +6,4 @@ Sumario:
 * 41 - 45: questões de lista
 * 46 - 50: questões de conjuntos e dicionarios
 * 51 - 60: questões de programação orienteda a objetos
+* 61 - 70: questões de programação orienteda a objetos 2
