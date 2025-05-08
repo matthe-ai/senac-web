@@ -43,7 +43,7 @@ def menu():
         if opcao == "1":
             curso = input("Digite o nome do curso: ")
             nivel = input("Digite o nivel do curso: (iniciante) (intermediario) (avançado) \nEscolha: ").lower()
-            if nivel == "iniciante" or "intermediario" or "avançado":
+            if nivel == "iniciante" or nivel == "intermediario" or nivel == "avançado":
                 dao.inserir_dados(curso,nivel)
             else:
                 print("Nivel de dificuldade inválido")
