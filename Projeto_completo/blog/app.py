@@ -81,3 +81,5 @@ def index():
 #---------------------------ROTA PRINCIPAL (REGISTER)---------------------------#
 
 @app.route('/register',methods = ['get','post'])
+def register():
+    db = get_db()
