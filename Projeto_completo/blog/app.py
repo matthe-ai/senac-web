@@ -1,12 +1,12 @@
 import sqlite3 # biblioteca para usar banco de dados
 import os # biblioteca para lidar com arquivos e diretorios
-from flask import flask,render_template,request,redirect,url_for,session,g # bibliotecas importantes do flask
+from flask import Flask,render_template,request,redirect,url_for,session,g # bibliotecas importantes do flask
 import re # biblioteca para validações com expressões regulares (senha)
 from werkzeug.utils import secure_filename # biblioteca que garante nomes seguros para arquivos enviados
 
 #---------------------------CONFIGURAÇÃO INICIAL DO APP---------------------------#
 
-app = flask(__name__) # criação da aplicação flask
+app = Flask(__name__) # criação da aplicação flask
 app.config['SECRET_KEY'] = 'chave_jorge' # chave secreta para as sessoes
 app.config['UPLOAD_FOLDER'] = 'static/uploads' # pasta para onde imagens serão salvas
 app.config['MAX_CONTENT_LENGTH'] = 2*1024*1024 # Limite do tamanho de uploads para 2mb
