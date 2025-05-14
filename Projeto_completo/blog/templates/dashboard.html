@@ -8,7 +8,7 @@
 <body>
     <h2>Meus Posts</h2>
     <a href="{{ url_for('new_post') }}">Novo Post</a>
-    <a href="{{ url_for('Logout') }}">Sair</a>
+    <a href="{{ url_for('logout') }}">Sair</a>
     
     {%for post in posts %}
     <div class="post">
