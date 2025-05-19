@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decks</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='decks.css') }}">
+    <link rel="icon" type="image/webp" href="https://media.printables.com/media/prints/558196/images/4476391_5291ef30-8b78-4b46-8814-29786bf849e4/thumbs/inside/1280x960/webp/tumblr_msd6grr3bx1qk43wto1_500.webp">
+</head>
+<body>
+    <!--Cabeçalho-->
+    <header>
+        <nav class="nav-sup" id="navbar">
+            <img src="../static/uploads/ygo-md.webp" alt="logo Yu Gi Oh Master Duel" class="logo-ygo">
+            <a href="{{ url_for('tutoriais') }}">Tutoriais/Dicas</a>
+            <a href="{{ url_for('decks') }}">Ver decks</a>
+            <a href="{{ url_for('index') }}"><img src="../static/uploads/Yu-Gi-OhLogo.webp" alt="Logo do Yu Gi Oh" class="logo-central"></a>
+            <input class="pesquisa" type="text" placeholder="Pesquisar">
+            <a href="{{ url_for('sobre') }}">Sobre nós</a>
+            <a href="{{ url_for('login') }}"><img class="perfil" src="../static/uploads/perfil.png" alt="Perfil"></a>
+        </nav>
+    </header>
+    <!--Parte principal-->
+    <main>
+        <h1 id="titulo">Decks</h1>
+        {% for deck in decks %}
+        <section class="deck">
+            <img src="{{ url_for('static',filename='uploads/' + imagem.deck) }}" class="card">
+            <div class="texto">
+                <h1>{{ titulo.deck }}</h1>
+                <p>{{ resumo.deck }}</p>
+            </div>
+            <img src="../static/uploads/heart.png" alt="coração" class="heart">
+        </section>
+        {% endfor %}
+        <a href="#navbar" class="botao-flutuante">Voltar ao topo</a>
+    </main>
+    <!--Rodapé-->
+    <footer>
+        <p>Esta página foi feito por um fã para outro fã, espero que goste</p>
+        <p>&copy; 2025 - Mattheus</p>
+    </footer>
+</body>
+</html>

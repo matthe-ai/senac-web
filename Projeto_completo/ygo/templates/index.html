@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yu Gi Oh db</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='home.css') }}">
+    <link rel="icon" type="image/webp" href="https://media.printables.com/media/prints/558196/images/4476391_5291ef30-8b78-4b46-8814-29786bf849e4/thumbs/inside/1280x960/webp/tumblr_msd6grr3bx1qk43wto1_500.webp">
+</head>
+<body>
+    <!--Cabeçalho-->
+    <header>
+        <nav class="nav-sup" id="navbar">
+            <img src="../static/uploads/ygo-md.webp" alt="logo Yu Gi Oh Master Duel" class="logo-ygo">
+            <a href="{{ url_for('tutoriais') }}">Tutoriais/Dicas</a>
+            <a href="{{ url_for('decks') }}">Ver decks</a>
+            <a href="{{ url_for('index') }}"><img src="../static/uploads/Yu-Gi-OhLogo.webp" alt="Logo do Yu Gi Oh" class="logo-central"></a>
+            <input class="pesquisa" type="text" placeholder="Pesquisar">
+            <a href="{{ url_for('sobre') }}">Sobre nós</a>
+            <a href="{{ url_for('login') }}"><img class="perfil" src="../static/uploads/perfil.png" alt="Perfil"></a>
+        </nav>
+    </header>
+    <!--Corpo principal-->
+    <main class="principal">
+        <h1>Noticias recentes</h1>
+        {%for noticia in noticias%}
+        <section class="div-noticia">
+            <img src="{{ url_for('static',filename='/uploads' + noticia.imagem) }}" class="new-img">
+            <div class="noticia">
+                <h2>{{ titulo.noticia }}</h2>
+                <br>
+                <p>{{ conteudo.noticia }}</p>
+            </div>
+        </section>
+        {% endfor %}
+        <hr>
+        <a href="#navbar" class="botao-flutuante">Voltar ao topo</a>
+    </main>
+    <!--Rodape-->
+    <footer>
+        <p>Esta página foi feito por um fã para outro fã, espero que goste</p>
+        <p>&copy; 2025 - Mattheus</p>
+    </footer>
+</body>
+</html>

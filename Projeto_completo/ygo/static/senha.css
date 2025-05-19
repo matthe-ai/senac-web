@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Sarpanch;
+}
+
+body{
+    background-color: #2d335b;
+}
+
+.flex{
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.branco{
+    background-color: #d9d9d9;
+    width: 40%;
+    height: 700px;
+    border-radius: 16px;
+    margin-top: 5%;
+    box-shadow: 0px 0px 50px 10px rgba(0, 0, 0, 0.5);
+}
+
+.emoje{
+    width: 472px;
+}
+
+.rec-senha{
+    padding: 30px;
+    font-size: 30px;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 15px;
+}
+
+@font-face {
+    font-family: Sarpanch;
+    src: url(Sarpanch/Sarpanch-Regular.ttf);
+}
+
+.return{
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.form-senha{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 15px;
+}
+
+.form-senha label{
+    font-size: 30px;
+}
+
+.form-senha input{
+    height: 50px;
+    border-radius: 16px;
+    border: none;
+    font-size: 20px;
+    padding-left: 15px;
+}
+
+.rec-senha-b{
+    background-color: purple;
+    color: white;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border-radius: 16px;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.rec-senha-b:hover{
+    background-color: rgb(90, 0, 90);
+}
+
+.rec-senha-b:active{
+    transform: scale(0.92);
+}
