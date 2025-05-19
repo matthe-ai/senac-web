@@ -38,7 +38,7 @@ def extensao_valida(nome_arquivo):
     # Verificar se a extensão do arquivo enviado é uma das permitidas
     # Verifica se o nome do arquivo possui um ponto
     # nome_arquivo.rssplit('.',1): separa o nome do arquivo da extensão, da direita para esquerda, uma vez só (split detecta a separação atraves do ponto)
-    return '.' in nome_arquivo and nome_arquivo.rsplit('.',1).lower() in EXTENSOES
+    return '.' in nome_arquivo and nome_arquivo.lower().rsplit('.',1)[1] in EXTENSOES
 
 #---------------------------Criação das tabelas (executar uma única vez)---------------------------#
 
@@ -167,6 +167,7 @@ def logout():
     return redirect(url_for('index'))
 
 #---------------------------EXECUÇÃO PRINCIPAL---------------------------#
+
 if __name__ == '__main__':
     os.makedirs(app.config['UPLOAD_FOLDER'],exist_ok=True) # cria a pasta de uploads se ela não existir
     inicializar_banco() # garante que o banco e tabelas sejam inicializados
