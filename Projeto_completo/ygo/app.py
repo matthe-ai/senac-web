@@ -31,6 +31,7 @@ def criar_tabela():
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     email TEXT NOT NULL,
                     senha TEXT NOT NULL,
+                    tipo TEXT NOT NULL,
                     usuario TEXT NOT NULL)''')
         db.execute('''CREATE TABLE IF NOT EXISTS deck(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -55,9 +56,10 @@ def criar_tabela():
 
 @app.route('/')
 def index():
+    tipo_user = session.get('usuario_tipo')
     db = get_db()
     noticias = db.execute('SELECT * FROM noticia').fetchall()
-    return render_template('index.html',noticias = noticias)
+    return render_template('index.html',noticias = noticias, tipo_user = tipo_user)
 
 @app.route('/tutoriais')
 def tutoriais():
@@ -75,9 +77,47 @@ def decks():
 def sobre():
     return render_template('sobre.html')
 
-@app.route('/login')
+@app.route('/login',methods=['GET','POST'])
 def login():
+    if request.method == 'POST':
+        tipo_formulario = request.form['formulario']
+        if tipo_formulario == 'cadastro':
+
+            # registrar
+
+            email = request.form['email']
+            senha_criar = request.form['senha_criar']
+            usuario_criar = request.form['usuario_criar']
+            if len(senha_criar) < 6:
+                return 'Senha fraca'
+            else:
+                if usuario_criar == 'admin':
+                    tipo = 'admin'
+                else:
+                    tipo = 'normal'
+                db = get_db()
+                db.execute('INSERT INTO usuarios(email,senha,tipo,usuario) VALUES (?,?,?,?)',(email,senha_criar,tipo,usuario_criar))
+                db.commit()
+
+        elif tipo_formulario == 'login':
+            # login
+            usuario = request.form['usuario']
+            senha = request.form['senha']
+            print(usuario,senha)
+            db = get_db()
+            existe_user = db.execute('SELECT * FROM usuarios WHERE usuario=? AND senha=?',(usuario,senha)).fetchone()
+            if existe_user:
+                session['usuario_tipo'] = existe_user['tipo']
+                tipo_user = session['usuario_tipo']
+                return redirect(url_for('index'))
+            else:
+                return 'Usuario não encontrado'
     return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
 
 # executar app
 
