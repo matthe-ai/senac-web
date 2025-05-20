@@ -1,0 +1,178 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+/* pop-up */
+.pop_up{
+    display: none;
+    position: absolute;
+    right: 0%;
+    padding: 20px;
+    background-color: #d9d9d9;
+    color: black;
+    border-radius: 16px;
+    width: 350px;
+    font-size: 20px;
+    font-family: Sarpanch;
+}
+
+.vermelho{
+    color: red;
+}
+
+.user_off{
+    text-align: center;
+}
+
+.user_on a{
+    margin: 15px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 25px;
+    text-align: left;
+}
+
+#fechar_popup{
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    font-size: 18px;
+    text-align: left;
+    color: red;
+}
+
+#cadastrar_botao{
+    color: #8d0f78;
+    padding: 10px;
+    background-color: rgba(250, 250, 250, .4);
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: Sarpanch;
+    src: url(Sarpanch/Sarpanch-Regular.ttf);
+}
+
+body{
+    background-color: #2d335b;
+}
+
+nav a:hover{
+    color: red;
+}
+
+nav img{
+    cursor: pointer;
+}
+
+nav a{
+    transition-duration: .5s;
+}
+
+.botao-flutuante{
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    background-color: #b18f1d;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
+}
+
+.nav-sup{
+    background-color: #b18f1d;
+    display: flex;
+    /* gap: 150px; */
+    text-align: center;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 25px;
+    justify-content: space-between;
+}
+
+.nav-sup a{
+    color: white;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.logo-ygo{
+    height: 60px;
+}
+
+.logo-central{
+    height: 60px;
+}
+
+.perfil{
+    height: 50px;
+}
+
+.pesquisa{
+    height: 40px;
+    width: 200px;
+    border-radius: 15px;
+    border: none;
+    padding-left: 15px;
+}
+
+.principal{
+    color: white;
+    text-align: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.div-noticia{
+    justify-content: center;
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.noticia{
+    width: 30%;
+    text-align: justify;
+    font-family: Sarpanch;
+}
+
+.principal hr{
+    width: 75%;
+    margin-left: 12.5%;
+}
+
+.noticia p{
+    font-size: 20px;
+}
+
+.new-img{
+    width: 424px;
+    height: 247px;
+    border-radius: 16px;
+    margin-right: 20px;
+    margin-left: -12.5%;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    gap: 100px;
+    padding: 20px;
+    margin-top: 100px;
+    background-color: #b18f1d;
+}

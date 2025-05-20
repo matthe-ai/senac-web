@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='login.css') }}">
+    <link rel="icon" type="image/webp" href="https://media.printables.com/media/prints/558196/images/4476391_5291ef30-8b78-4b46-8814-29786bf849e4/thumbs/inside/1280x960/webp/tumblr_msd6grr3bx1qk43wto1_500.webp">
+    <title>Cadastro</title>
+</head>
+<body class="flex">
+    <div class="branco">
+        <header class="login">
+            <h1>Fazer login</h1>
+        </header>
+        <main>
+            <form class="login-form" method="POST">
+                <input type="hidden" name="formulario" value="login">
+                <label for="user">Usuario ou Login:</label>
+                <br>
+                <input type="text" name="usuario" required placeholder="Digite seu usuario ou email">
+                <br>
+                <label for="senha">Senha:</label>
+                <br>
+                <input type="password" name="senha" required placeholder="Digite sua senha">
+                <br>
+                <a class="esqueci" href="{{ url_for('rec_senha') }}">Esqueci minha senha</a>
+                <br>
+                <button class="login-button" type="submit">Login</button>
+            </form>
+            <a class="return bottom" href="{{ url_for('index') }}">⬅︎ Voltar</a>
+        </main>
+    </div>
+    <hr class="vertical">
+    <div class="branco">
+        <header class="login">
+            <h1>Cadastro</h1>
+        </header>
+        <main>
+            <form class="login-form" method="POST">
+                <input type="hidden" value="cadastro" name="formulario">
+                <label for="email">Email:</label>
+                <br>
+                <input type="email" name="email" required placeholder="Email">
+                <br>
+                <label for="senha">Senha:</label>
+                <br>
+                <input minlength="6" required type="text" name="senha_criar" placeholder="Digite uma senha de 6 caracteres ou mais">
+                <br>
+                <label for="user">Usuario:</label>
+                <br>
+                <input type="text" name="usuario_criar" required placeholder="Crie um nome de usuario">
+                <br>
+                <button class="cadastro-button">Cadastrar</button>
+            </form>
+            <a class="return" href="{{ url_for('index') }}">⬅︎ Voltar</a>
+        </main>
+    </div>
+</body>
+</html>

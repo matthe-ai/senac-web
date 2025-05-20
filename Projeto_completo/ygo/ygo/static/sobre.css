@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.inicial{
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    gap: 30px;
+    margin-left: 50px;
+}
+
+.texto{
+    font-family: Sarpanch;
+    color: white;
+    font-size: 30px;
+    text-align: justify;
+}
+
+#sup{
+    width: 40%;
+}
+
+#down{
+    margin-left: 50px;
+    margin-right: 50px;
+    line-height: 1.5;
+}

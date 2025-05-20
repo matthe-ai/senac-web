@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+@font-face {
+    font-family: Sarpanch;
+    src: url(Sarpanch/Sarpanch-Regular.ttf);
+}
+
+body{
+    background-color: #2d335b;
+}
+
+#titulo{
+    color: white;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    font-size: 70px;
+}
+
+.tutoriais{
+    display: flex;
+    justify-content: center;
+    color: white;
+    gap: 40px;
+    font-family: Sarpanch;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.tutoriais h1{
+    font-size: 50px;
+}
+
+.tutoriais p{
+    text-align: justify;
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+.card{
+    width: 25%;
+    box-shadow: 0px 0px 15px 10px rgba(0, 0, 0, 0.5);
+}
+
+.textos{
+    width: 30%;
+}

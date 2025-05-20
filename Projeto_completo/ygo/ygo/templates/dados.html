@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yu Gi Oh db</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='dados.css') }}">
+    <link rel="icon" type="image/webp" href="https://media.printables.com/media/prints/558196/images/4476391_5291ef30-8b78-4b46-8814-29786bf849e4/thumbs/inside/1280x960/webp/tumblr_msd6grr3bx1qk43wto1_500.webp">
+</head>
+<body>
+    <!--Cabeçalho-->
+    <header>
+        <nav class="nav-sup" id="navbar">
+            <img src="../static/uploads/ygo-md.webp" alt="logo Yu Gi Oh Master Duel" class="logo-ygo">
+            <a href="{{ url_for('tutoriais') }}">Tutoriais/Dicas</a>
+            <a href="{{ url_for('decks') }}">Ver decks</a>
+            <a href="{{ url_for('index') }}"><img src="../static/uploads/Yu-Gi-OhLogo.webp" alt="Logo do Yu Gi Oh" class="logo-central"></a>
+            <input class="pesquisa" type="text" placeholder="Pesquisar">
+            <a href="{{ url_for('sobre') }}">Sobre nós</a>
+            <img onclick="mostarPopup()" class="perfil" src="../static/uploads/perfil.png" alt="Perfil">
+        </nav>
+    <!-- pop-up -->
+    <div id="popup" class="pop_up">
+        {% if tipo_user == 'normal' %}
+            <section class="user_on">
+                <a href="">Dados do usuario</a> <br> <br>
+                <a href="">Decks favoritos</a> <br> <br>
+                <a class="vermelho" href="/logout">Logout</a>
+            </section>
+        {% elif tipo_user == 'admin' %}
+            <section class="user_on">
+                <a href="">Dados do usuario</a> <br> <br>
+                <a href="">Decks favoritos</a> <br> <br>
+                <a href="">Criar tutorial</a> <br> <br>
+                <a href="">Criar noticia</a> <br> <br>
+                <a class="vermelho" href="/logout">Logout</a>
+            </section>
+        {% else %}
+            <section class="user_off">
+                <p>Você não fez login ainda</p> <br>
+                <a href="{{ url_for('login') }}" id="cadastrar_botao">Fazer login/Cadastrar</a>
+            </section>
+        {%endif%} <br>
+        <p id="fechar_popup" onclick="fecharPopup()">Fechar X</p>
+    </div>
+    <!-- script js -->
+    <script>
+        function mostarPopup() {
+            document.getElementById('popup').style.display='block'
+        }
+
+        function fecharPopup(){
+            document.getElementById('popup').style.display='none';
+        }
+    </script>
+    </header>
+    <!--Corpo principal-->
+    <main class="principal">
+        <!-- titulo -->
+        <h1>Meus dados</h1>
+        <div class="branco">
+            <section class="alterar">
+                <h2>Email cadastrado: <br> {{ dados['email'] }}</h2>
+                <form method="POST">
+                    <input type="email" name="novo_email" placeholder="Digite aqui o novo email: ">
+                    <button type="submit">Enviar</button>
+                </form>
+            </section>
+            <section class="alterar">
+                <h2>Nome de usuario: <br> {{ dados['usuario'] }}</h2>
+                <form method="POST">
+                    <input type="text" name="novo_usuario" placeholder="Digite aqui o novo usuario: ">
+                    <button type="submit">Enviar</button>
+                </form>
+            </section>
+            <section class="alterar">
+                <h2>Senha: <br> {{ dados['senha'] }}</h2>
+                <form method="POST">
+                    <input type="password" name="nova_senha" placeholder="Digite uma nova senha: ">
+                    <button type="submit">Enviar</button>
+                </form>
+            </section>
+            <section class="alterar">
+                <h2>Tipo de usuario: <br> {{ dados['tipo'] }}</h2>
+                <form method="POST">
+                    <input type="text" name="apagar" placeholder="Digite: 'EXCLUIR' para apagar a conta">
+                    <button type="submit" id="apagar">Enviar</button>
+                </form>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
