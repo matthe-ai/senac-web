@@ -4,6 +4,20 @@
     padding: 0;
 }
 
+/* pop-up */
+.pop_up{
+    display: none;
+    position: fixed;
+    top: 10%;
+    left: 90%;
+    padding: 20px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+
 html {
     scroll-behavior: smooth;
 }
@@ -19,6 +33,10 @@ body{
 
 nav a:hover{
     color: red;
+}
+
+nav img{
+    cursor: pointer;
 }
 
 nav a{

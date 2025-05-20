@@ -17,9 +17,24 @@
             <a href="{{ url_for('index') }}"><img src="../static/uploads/Yu-Gi-OhLogo.webp" alt="Logo do Yu Gi Oh" class="logo-central"></a>
             <input class="pesquisa" type="text" placeholder="Pesquisar">
             <a href="{{ url_for('sobre') }}">Sobre nós</a>
-            <a href="{{ url_for('login') }}"><img class="perfil" src="../static/uploads/perfil.png" alt="Perfil"></a>
+            <img onclick="mostarPopup()" class="perfil" src="../static/uploads/perfil.png" alt="Perfil">
         </nav>
     </header>
+    <!-- pop-up -->
+    <div id="popup" class="pop_up">
+        teste de popup
+        <button onclick="fecharPopup()">Fechar</button>
+    </div>
+    <!-- script js -->
+    <script>
+        function mostarPopup() {
+            document.getElementById('popup').style.display='block'
+        }
+
+        function fecharPopup(){
+            document.getElementById('popup').style.display='none';
+        }
+    </script>
     <!--Corpo principal-->
     <main class="principal">
         <h1>Noticias recentes</h1>
