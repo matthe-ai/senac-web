@@ -63,19 +63,22 @@ def index():
 
 @app.route('/tutoriais')
 def tutoriais():
+    tipo_user = session.get('usuario_tipo')
     db = get_db()
     tutoriais = db.execute('SELECT * FROM tutorial').fetchall()
-    return render_template('tutoriais.html',tutoriais = tutoriais)
+    return render_template('tutoriais.html',tutoriais = tutoriais,tipo_user=tipo_user)
 
 @app.route('/decks')
 def decks():
+    tipo_user = session.get('usuario_tipo')
     db = get_db()
     decks = db.execute('SELECT * FROM deck').fetchall()
-    return render_template('decks.html',decks = decks)
+    return render_template('decks.html',decks = decks,tipo_user=tipo_user)
 
 @app.route('/sobre')
 def sobre():
-    return render_template('sobre.html')
+    tipo_user = session.get('usuario_tipo')
+    return render_template('sobre.html',tipo_user=tipo_user)
 
 @app.route('/login',methods=['GET','POST'])
 def login():
@@ -105,14 +108,59 @@ def login():
             senha = request.form['senha']
             print(usuario,senha)
             db = get_db()
-            existe_user = db.execute('SELECT * FROM usuarios WHERE usuario=? AND senha=?',(usuario,senha)).fetchone()
+            existe_user = db.execute('SELECT * FROM usuarios WHERE usuario=? OR email=? AND senha=?',(usuario,usuario,senha)).fetchone()
             if existe_user:
                 session['usuario_tipo'] = existe_user['tipo']
-                tipo_user = session['usuario_tipo']
+                session['usuario_nome'] = existe_user['usuario']
+                session['usuario_email'] = existe_user['email']
+                session['usuario_id'] = existe_user['id']
                 return redirect(url_for('index'))
             else:
                 return 'Usuario não encontrado'
     return render_template('login.html')
+
+@app.route('/dados', methods=['GET','POST'])
+def dados():
+    tipo_user = session.get('usuario_tipo')
+    if 'usuario_nome' not in session or 'usuario_email' not in session:
+        return redirect(url_for('login'))
+
+    usuario = session['usuario_nome']
+    email = session['usuario_email']
+    db = get_db()
+    dados = db.execute('SELECT * FROM usuarios WHERE usuario=? AND email=?',(usuario,email)).fetchone()
+
+    if request.method == 'POST':
+        id_user = session.get('usuario_id')
+        novo_email = request.form.get('novo_email')
+        novo_usuario = request.form.get('novo_usuario')
+        nova_senha = request.form.get('nova_senha')
+        apagar_user = request.form.get('apagar')
+        if novo_email:
+            db.execute('UPDATE usuarios SET email=? WHERE id=?',(novo_email,id_user))
+            session['usuario_email'] = novo_email
+        if novo_usuario:
+            db.execute('UPDATE usuarios SET usuario=? WHERE id=?',(novo_usuario,id_user))
+            session['usuario_nome'] = novo_usuario
+        if nova_senha:
+            db.execute('UPDATE usuarios SET senha=? WHERE id=?',(nova_senha,id_user))
+        if apagar_user == "EXCLUIR":
+            db.execute('DELETE FROM usuarios WHERE id=?',(id_user,))
+            db.commit()
+            session.clear()
+            return redirect(url_for('index'))
+        db.commit()
+    return render_template('dados.html',dados=dados,tipo_user=tipo_user)
+
+@app.route('/rec_senha',methods=['GET','POST'])
+def rec_senha():
+    senha = None
+    if request.method == 'POST':
+        email = request.form.get('usuario')
+        if email:
+            db = get_db()
+            senha = db.execute('SELECT senha FROM usuarios WHERE email=?',(email,)).fetchone()
+    return render_template('rec_senha.html',senha=senha)
 
 @app.route('/logout')
 def logout():
