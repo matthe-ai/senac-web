@@ -24,16 +24,16 @@
     <div id="popup" class="pop_up">
         {% if tipo_user == 'normal' %}
             <section class="user_on">
-                <a href="">Dados do usuario</a> <br> <br>
+                <a href="{{ url_for('dados') }}">Dados do usuario</a> <br> <br>
                 <a href="">Decks favoritos</a> <br> <br>
                 <a class="vermelho" href="/logout">Logout</a>
             </section>
         {% elif tipo_user == 'admin' %}
             <section class="user_on">
-                <a href="">Dados do usuario</a> <br> <br>
+                <a href="{{ url_for('dados') }}">Dados do usuario</a> <br> <br>
                 <a href="">Decks favoritos</a> <br> <br>
                 <a href="">Criar tutorial</a> <br> <br>
-                <a href="">Criar noticia</a> <br> <br>
+                <a href="{{ url_for('criar_noticia') }}">Criar noticia</a> <br> <br>
                 <a class="vermelho" href="/logout">Logout</a>
             </section>
         {% else %}

@@ -1,0 +1,13 @@
+#sessao{
+    margin-top: 50px;
+}
+
+#formulario_noticia{
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin: 20px;
+    grid-row: 100px;
+}

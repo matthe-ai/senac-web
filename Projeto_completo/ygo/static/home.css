@@ -33,6 +33,11 @@
     font-weight: bold;
     font-size: 25px;
     text-align: left;
+    transition-duration: .5s;
+}
+
+.user_on > a:hover{
+    transform: scale(1.5);
 }
 
 #fechar_popup{
@@ -138,6 +143,7 @@ nav a{
 
 .div-noticia{
     justify-content: center;
+    align-items: center;
     display: flex;
     margin-top: 50px;
     margin-bottom: 50px;

@@ -4,6 +4,8 @@ import os
 import smtplib # enviar email
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from werkzeug.utils import secure_filename
+
 
 # inicio do app
 
@@ -84,8 +86,10 @@ def criar_tabela():
 def index():
     tipo_user = session.get('usuario_tipo')
     db = get_db()
-    noticias = db.execute('SELECT * FROM noticia').fetchall()
+    noticias = db.execute('SELECT * FROM noticia ORDER BY id DESC').fetchall()
     return render_template('index.html',noticias = noticias, tipo_user = tipo_user)
+
+# rota para pagina de tutoriais
 
 @app.route('/tutoriais')
 def tutoriais():
@@ -94,6 +98,8 @@ def tutoriais():
     tutoriais = db.execute('SELECT * FROM tutorial').fetchall()
     return render_template('tutoriais.html',tutoriais = tutoriais,tipo_user=tipo_user)
 
+# rota para pagina de decks
+
 @app.route('/decks')
 def decks():
     tipo_user = session.get('usuario_tipo')
@@ -101,10 +107,14 @@ def decks():
     decks = db.execute('SELECT * FROM deck').fetchall()
     return render_template('decks.html',decks = decks,tipo_user=tipo_user)
 
+# rota para pagina sobre
+
 @app.route('/sobre')
 def sobre():
     tipo_user = session.get('usuario_tipo')
     return render_template('sobre.html',tipo_user=tipo_user)
+
+# rota para fazer login
 
 @app.route('/login',methods=['GET','POST'])
 def login():
@@ -127,9 +137,10 @@ def login():
                 db = get_db()
                 db.execute('INSERT INTO usuarios(email,senha,tipo,usuario) VALUES (?,?,?,?)',(email,senha_criar,tipo,usuario_criar))
                 db.commit()
-
         elif tipo_formulario == 'login':
+
             # login
+
             usuario = request.form['usuario']
             senha = request.form['senha']
             print(usuario,senha)
@@ -144,6 +155,8 @@ def login():
             else:
                 return 'Usuario não encontrado'
     return render_template('login.html')
+
+# rota para mostrar dados, alterar e apagar
 
 @app.route('/dados', methods=['GET','POST'])
 def dados():
@@ -178,6 +191,8 @@ def dados():
         db.commit()
     return render_template('dados.html',dados=dados,tipo_user=tipo_user)
 
+# rota para recuperação de senha
+
 @app.route('/rec_senha',methods=['GET','POST'])
 def rec_senha():
     if request.method == 'POST':
@@ -195,6 +210,29 @@ def rec_senha():
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
+# rota de criar noticia
+@app.route('/criar_noticia',methods=['GET','POST'])
+def criar_noticia():
+    tipo_user = session.get('usuario_tipo')
+    if session['usuario_tipo'] != 'admin':
+        return redirect(url_for('index'))
+    if request.method == 'POST':
+        titulo = request.form.get('titulo')
+        conteudo = request.form.get('conteudo')
+        imagem = request.files['imagem_noticia']
+        nome_arquivo = None
+        if verificar_extensao(imagem.filename):
+            nome_arquivo = secure_filename(imagem.filename)
+            imagem.save(os.path.join(app.config['UPLOAD_FOLDER'],nome_arquivo))
+            db = get_db()
+            db.execute('INSERT INTO noticia (imagem,titulo,conteudo) VALUES (?,?,?)',(nome_arquivo,titulo,conteudo))
+            db.commit()
+            return redirect(url_for('index'))
+        else:
+            erro = 'extensão não suportada'
+            return render_template('criar_noticia.html',erro=erro)
+    return render_template('criar_noticia.html',tipo_user=tipo_user)
 
 # executar app
 

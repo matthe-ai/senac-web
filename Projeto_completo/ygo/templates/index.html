@@ -32,7 +32,7 @@
                 <a href="{{ url_for('dados') }}">Dados do usuario</a> <br> <br>
                 <a href="">Decks favoritos</a> <br> <br>
                 <a href="">Criar tutorial</a> <br> <br>
-                <a href="">Criar noticia</a> <br> <br>
+                <a href="{{ url_for('criar_noticia') }}">Criar noticia</a> <br> <br>
                 <a class="vermelho" href="/logout">Logout</a>
             </section>
         {% else %}
@@ -59,15 +59,15 @@
         <h1>Noticias recentes</h1>
         {%for noticia in noticias%}
         <section class="div-noticia">
-            <img src="{{ url_for('static',filename='/uploads' + noticia.imagem) }}" class="new-img">
+            <img src="{{ url_for('static',filename='uploads/'+noticia.imagem) }}" class="new-img">
             <div class="noticia">
-                <h2>{{ titulo.noticia }}</h2>
+                <h2>{{ noticia.titulo }}</h2>
                 <br>
-                <p>{{ conteudo.noticia }}</p>
+                <p>{{ noticia.conteudo }}</p>
             </div>
         </section>
-        {% endfor %}
         <hr>
+        {% endfor %}
         <a href="#navbar" class="botao-flutuante">Voltar ao topo</a>
     </main>
     <!--Rodape-->
