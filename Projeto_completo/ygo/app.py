@@ -1,6 +1,9 @@
 import sqlite3
 from flask import Flask,render_template,request,url_for,redirect,session
 import os
+import smtplib # enviar email
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # inicio do app
 
@@ -11,6 +14,29 @@ app.config['SECRET_KEY'] = 'chave_mattheus'
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
 EXTENSOES = ['png','jpg','jpeg']
+
+# email e recuperação de senha
+def senha_email(destinatario,senha):
+    remetente = 'yugiohmd645@gmail.com'
+    email_senha = 'oictbmpqkujzwklx'
+    if destinatario and senha:
+        # criação de mensagem
+        mensagem = MIMEMultipart()
+        mensagem['From'] = remetente
+        mensagem['To'] = destinatario
+        mensagem['Subject'] = 'Recuperação de senha YGO-MD'
+        #corpo do email
+        corpo = f"Olá {destinatario}, sua senha é {senha['senha']}"
+        mensagem.attach(MIMEText(corpo,'plain'))
+        try:
+            servidor_email = smtplib.SMTP('smtp.gmail.com',587)
+            servidor_email.starttls()
+            servidor_email.login(remetente,email_senha)
+            servidor_email.sendmail(remetente,destinatario,mensagem.as_string())
+        except Exception as e:
+            print(f"erro: {e}")
+        finally:
+            servidor_email.quit()
 
 # iniciar banco de dados
 
@@ -154,13 +180,16 @@ def dados():
 
 @app.route('/rec_senha',methods=['GET','POST'])
 def rec_senha():
-    senha = None
     if request.method == 'POST':
         email = request.form.get('usuario')
         if email:
             db = get_db()
-            senha = db.execute('SELECT senha FROM usuarios WHERE email=?',(email,)).fetchone()
-    return render_template('rec_senha.html',senha=senha)
+            senha = db.execute('SELECT senha FROM usuarios WHERE email=? OR usuario=?',(email,email)).fetchone()
+            senha_email(email,senha)
+            return redirect(url_for('login'))
+    return render_template('rec_senha.html')
+
+# rota de logout
 
 @app.route('/logout')
 def logout():
