@@ -60,7 +60,8 @@ def criar_tabela():
                     email TEXT NOT NULL,
                     senha TEXT NOT NULL,
                     tipo TEXT NOT NULL,
-                    usuario TEXT NOT NULL)''')
+                    usuario TEXT NOT NULL,
+                    deck_fav TEXT)''')
         db.execute('''CREATE TABLE IF NOT EXISTS deck(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     imagem TEXT NOT NULL,
@@ -212,6 +213,7 @@ def logout():
     return redirect(url_for('index'))
 
 # rota de criar noticia
+
 @app.route('/criar_noticia',methods=['GET','POST'])
 def criar_noticia():
     tipo_user = session.get('usuario_tipo')
@@ -231,8 +233,57 @@ def criar_noticia():
             return redirect(url_for('index'))
         else:
             erro = 'extensão não suportada'
-            return render_template('criar_noticia.html',erro=erro)
+            return render_template('criar_noticia.html',tipo_user=tipo_user,erro=erro)
     return render_template('criar_noticia.html',tipo_user=tipo_user)
+
+# rota de criar deck
+
+@app.route('/criar_deck',methods=['GET','POST'])
+def criar_deck():
+    tipo_user = session.get('usuario_tipo')
+    if tipo_user != 'admin':
+        return redirect(url_for('index'))
+    if request.method == 'POST':
+        titulo = request.form.get('titulo')
+        resumo = request.form.get('resumo')
+        carta = request.files['imagem_deck']
+        nome_arquivo = None
+        if verificar_extensao(carta.filename):
+            nome_arquivo = secure_filename(carta.filename)
+            carta.save(os.path.join(app.config['UPLOAD_FOLDER'],nome_arquivo))
+            db = get_db()
+            db.execute('INSERT INTO deck (imagem,titulo,resumo) VALUES (?,?,?)',(nome_arquivo,titulo,resumo))
+            db.commit()
+            return redirect(url_for('decks'))
+        else:
+            erro = 'extensão não suportada'
+            return render_template('criar_deck.html',tipo_user=tipo_user,erro=erro)
+    return render_template('criar_deck.html',tipo_user=tipo_user)
+
+# rota de criar tutorial
+
+@app.route('/criar_tutorial',methods=['GET','POST'])
+def criar_tutorial():
+    tipo_user = session.get('usuario_tipo')
+    if tipo_user != 'admin':
+        return redirect(url_for('index'))
+    if request.method == 'POST':
+        imagem = request.files['imagem_tutorial']
+        titulo = request.form.get('titulo')
+        resumo = request.form.get('resumo')
+        funcionamento = request.form.get('funcionamento')
+        nome_arquivo = None
+        if verificar_extensao(imagem.filename):
+            nome_arquivo = secure_filename(imagem.filename)
+            imagem.save(os.path.join(app.config['UPLOAD_FOLDER'],nome_arquivo))
+            db = get_db()
+            db.execute('INSERT INTO tutorial (imagem,titulo,resumo,funcionamento) VALUES (?,?,?,?)',(nome_arquivo,titulo,resumo,funcionamento))
+            db.commit()
+            return redirect(url_for('tutoriais'))
+        else:
+            erro = 'Extensão inválida'
+            return render_template('criar_tutorial.html',tipo_user=tipo_user,erro=erro)
+    return render_template('criar_tutorial.html',tipo_user=tipo_user)
 
 # executar app
 

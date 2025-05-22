@@ -2,7 +2,7 @@
     margin-top: 50px;
 }
 
-#formulario_noticia{
+#formulario_tutorial{
     align-items: center;
     justify-content: center;
     gap: 20px;
@@ -10,4 +10,10 @@
     grid-template-columns: 1fr 2fr;
     margin: 20px;
     grid-row: 100px;
+}
+
+#enviar{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    height: 50px;
 }

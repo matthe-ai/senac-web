@@ -15,7 +15,7 @@
             <a href="{{ url_for('tutoriais') }}">Tutoriais/Dicas</a>
             <a href="{{ url_for('decks') }}">Ver decks</a>
             <a href="{{ url_for('index') }}"><img src="../static/uploads/Yu-Gi-OhLogo.webp" alt="Logo do Yu Gi Oh" class="logo-central"></a>
-            <input class="pesquisa" type="text" placeholder="Pesquisar">
+            <input class="pesquisa" type="search" placeholder="Pesquisar">
             <a href="{{ url_for('sobre') }}">Sobre nós</a>
             <img onclick="mostarPopup()" class="perfil" src="../static/uploads/perfil.png" alt="Perfil">
         </nav>
@@ -29,10 +29,11 @@
             </section>
         {% elif tipo_user == 'admin' %}
             <section class="user_on">
-                <a href="{{ url_for('dados') }}">Dados do usuario</a> <br> <br>
-                <a href="">Decks favoritos</a> <br> <br>
-                <a href="">Criar tutorial</a> <br> <br>
-                <a href="{{ url_for('criar_noticia') }}">Criar noticia</a> <br> <br>
+                <a href="{{ url_for('dados') }}">Dados do usuario</a> <br>
+                <a href="">Decks favoritos</a> <br>
+                <a href="{{ url_for('criar_tutorial') }}">Criar tutorial</a> <br>
+                <a href="{{ url_for('criar_deck') }}">Criar deck</a> <br>
+                <a href="{{ url_for('criar_noticia') }}">Criar noticia</a> <br>
                 <a class="vermelho" href="/logout">Logout</a>
             </section>
         {% else %}

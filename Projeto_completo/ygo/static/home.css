@@ -34,10 +34,12 @@
     font-size: 25px;
     text-align: left;
     transition-duration: .5s;
+    display: inline-block;
 }
 
-.user_on > a:hover{
-    transform: scale(1.5);
+.user_on a:hover{
+    transform: scale(1.2);
+    color: #b18f1d;
 }
 
 #fechar_popup{
@@ -55,8 +57,14 @@
     background-color: rgba(250, 250, 250, .4);
     border-radius: 20px;
     font-size: 20px;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: .5s;
 }
 
+#cadastrar_botao:hover{
+    transform: scale(1.2);
+}
 
 html {
     scroll-behavior: smooth;

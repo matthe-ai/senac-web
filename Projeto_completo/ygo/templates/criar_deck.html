@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yu Gi Oh db</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='home.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='criar_noticia.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='criar_deck.css') }}">
     <link rel="icon" type="image/webp" href="https://media.printables.com/media/prints/558196/images/4476391_5291ef30-8b78-4b46-8814-29786bf849e4/thumbs/inside/1280x960/webp/tumblr_msd6grr3bx1qk43wto1_500.webp">
 </head>
 <body>
@@ -56,17 +56,17 @@
         }
     </script>
     </header>
-    <!-- Corpo principal-->
+    <!--Corpo principal-->
     <main class="principal">
-        <h1>Criar noticia</h1>
+        <h1>Criar deck</h1>
         <section id="sessao">
-            <form method="POST" enctype="multipart/form-data" id="formulario_noticia">
-                <label for="titulo">Noticia: </label>
-                <input type="text" placeholder="Titulo da noticia" name="titulo" required>
-                <label for="conteudo">Conteudo da noticia: </label>
-                <textarea name="conteudo" rows="10" cols="30" required placeholder="Digite aqui o conteudo da noticia"></textarea>
-                <label for="imagem">Imagem da noticia: </label>
-                <input type="file" required name="imagem_noticia">
+            <form method="POST" enctype="multipart/form-data" id="formulario_deck">
+                <label>Deck: </label>
+                <input type="text" placeholder="Nome do deck" name="titulo" required>
+                <label>Resumo sobre o deck: </label>
+                <textarea name="resumo" rows="10" cols="30" required placeholder="Digite aqui o resumo do deck"></textarea>
+                <label>Carta principal do deck: </label>
+                <input type="file" required name="imagem_deck">
                 <p>png,jpg ou jpeg</p>
                 <button type="submit">Enviar</button>
             </form>
