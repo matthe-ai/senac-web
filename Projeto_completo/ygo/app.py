@@ -91,7 +91,8 @@ def index():
     if request.method == 'POST':
         titulo = request.form.get('search_not')
         if titulo != '':
-            noticias = db.execute('SELECT * FROM noticia WHERE titulo LIKE %?%',(titulo,)).fetchall()
+            titulo = f"%{titulo}%"
+            noticias = db.execute('SELECT * FROM noticia WHERE titulo LIKE ?',(titulo,)).fetchall()
             return render_template('index.html',noticias = noticias, tipo_user = tipo_user)
     return render_template('index.html',noticias = noticias, tipo_user = tipo_user)
 
@@ -120,7 +121,8 @@ def decks():
     if request.method == 'POST':
         titulo = request.form.get('search_deck')
         if titulo != '':
-            decks = db.execute('SELECT * FROM deck WHERE titulo LIKE %?%',(titulo,)).fetchall()
+            titulo = f"%{titulo}%"
+            decks = db.execute('SELECT * FROM deck WHERE titulo LIKE ?',(titulo,)).fetchall()
             return render_template('decks.html',decks = decks, tipo_user = tipo_user)
     return render_template('decks.html',decks = decks,tipo_user=tipo_user)
 
