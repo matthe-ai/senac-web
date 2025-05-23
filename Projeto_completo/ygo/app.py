@@ -83,29 +83,45 @@ def criar_tabela():
 
 # rotas das paginas
 
-@app.route('/')
+@app.route('/',methods=['GET','POST'])
 def index():
     tipo_user = session.get('usuario_tipo')
     db = get_db()
     noticias = db.execute('SELECT * FROM noticia ORDER BY id DESC').fetchall()
+    if request.method == 'POST':
+        titulo = request.form.get('search_not')
+        if titulo != '':
+            noticias = db.execute('SELECT * FROM noticia WHERE titulo LIKE %?%',(titulo,)).fetchall()
+            return render_template('index.html',noticias = noticias, tipo_user = tipo_user)
     return render_template('index.html',noticias = noticias, tipo_user = tipo_user)
 
 # rota para pagina de tutoriais
 
-@app.route('/tutoriais')
+@app.route('/tutoriais',methods=['GET','POST'])
 def tutoriais():
     tipo_user = session.get('usuario_tipo')
     db = get_db()
     tutoriais = db.execute('SELECT * FROM tutorial').fetchall()
+    if request.method == 'POST':
+        titulo = request.form.get('search_tuto')
+        if titulo != '':
+            titulo = f"%{titulo}%"
+            tutoriais = db.execute('SELECT * FROM tutorial WHERE titulo LIKE ?',(titulo,)).fetchall()
+            return render_template('tutoriais.html',tutoriais = tutoriais, tipo_user = tipo_user)
     return render_template('tutoriais.html',tutoriais = tutoriais,tipo_user=tipo_user)
 
 # rota para pagina de decks
 
-@app.route('/decks')
+@app.route('/decks',methods=['GET','POST'])
 def decks():
     tipo_user = session.get('usuario_tipo')
     db = get_db()
     decks = db.execute('SELECT * FROM deck').fetchall()
+    if request.method == 'POST':
+        titulo = request.form.get('search_deck')
+        if titulo != '':
+            decks = db.execute('SELECT * FROM deck WHERE titulo LIKE %?%',(titulo,)).fetchall()
+            return render_template('decks.html',decks = decks, tipo_user = tipo_user)
     return render_template('decks.html',decks = decks,tipo_user=tipo_user)
 
 # rota para pagina sobre
@@ -154,7 +170,7 @@ def login():
                 session['usuario_id'] = existe_user['id']
                 return redirect(url_for('index'))
             else:
-                return 'Usuario não encontrado'
+                return redirect(url_for('login'))
     return render_template('login.html')
 
 # rota para mostrar dados, alterar e apagar
