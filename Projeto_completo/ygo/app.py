@@ -56,30 +56,35 @@ def verificar_extensao(nome_imagem):
 def criar_tabela():
     with get_db() as db:
         db.execute('''CREATE TABLE IF NOT EXISTS usuarios(
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
                     email TEXT NOT NULL,
                     senha TEXT NOT NULL,
                     tipo TEXT NOT NULL,
-                    usuario TEXT NOT NULL,
-                    deck_fav TEXT)''')
+                    usuario TEXT NOT NULL)''')
         db.execute('''CREATE TABLE IF NOT EXISTS deck(
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
                     imagem TEXT NOT NULL,
                     titulo TEXT NOT NULL,
                     resumo TEXT NOT NULL)''')
         db.execute('''CREATE TABLE IF NOT EXISTS noticia(
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
                     imagem TEXT NOT NULL,
                     titulo TEXT NOT NULL,
                     conteudo TEXT NOT NULL
                     )''')
         db.execute('''CREATE TABLE IF NOT EXISTS tutorial(
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
                     imagem TEXT NOT NULL,
                     titulo TEXT NOT NULL,
                     resumo TEXT NOT NULL,
                     funcionamento TEXT NOT NULL
                     )''')
+        db.execute('''CREATE TABLE IF NOT EXISTS favoritos(
+                    user_id INTEGER,
+                    deck_id INTEGER,
+                    PRIMARY KEY (user_id,deck_id),
+                    FOREIGN KEY (user_id) REFERENCES usuarios(id),
+                    FOREIGN KEY (deck_id) REFERENCES deck(id))''')
 
 # rotas das paginas
 
@@ -146,15 +151,18 @@ def tutorial(tutorial_id):
 @app.route('/decks',methods=['GET','POST'])
 def decks():
     tipo_user = session.get('usuario_tipo')
+    id_user = session.get('usuario_id')
     db = get_db()
     decks = db.execute('SELECT * FROM deck').fetchall()
+    favorito = db.execute('SELECT deck_id FROM favoritos WHERE user_id=?',(id_user,)).fetchall()  # não terminado checagem de deck favorito
+    print(favorito)
     if request.method == 'POST':
         titulo = request.form.get('search_deck')
         if titulo != '':
             titulo = f"%{titulo}%"
             decks = db.execute('SELECT * FROM deck WHERE titulo LIKE ?',(titulo,)).fetchall()
-            return render_template('decks.html',decks = decks, tipo_user = tipo_user)
-    return render_template('decks.html',decks = decks,tipo_user=tipo_user)
+            return render_template('decks.html',decks = decks, tipo_user = tipo_user,favorito=favorito)
+    return render_template('decks.html',decks = decks,tipo_user=tipo_user,favorito=favorito)
 
 # rota para apagar deck
 
@@ -341,6 +349,42 @@ def criar_tutorial():
             erro = 'Extensão inválida'
             return render_template('criar_tutorial.html',tipo_user=tipo_user,erro=erro)
     return render_template('criar_tutorial.html',tipo_user=tipo_user)
+
+# rota para deck favorito
+
+
+# não funciona ainda
+
+
+@app.route('/deck_fav')
+def deck_fav():
+    tipo_user = session.get('usuario_tipo')
+    id_user = session.get('usuario_id')
+    db = get_db()
+    decks = db.execute('SELECT * FROM favoritos WHERE user_id=?',(id_user,))
+    render_template('deck_fav.html',tipo_user=tipo_user,decks=decks)
+
+# rota para favoritar
+
+@app.route('/favoritar/<int:id>')
+def favoritar(id):
+    id_user = session.get('usuario_id')
+    print(id_user,id)
+    db = get_db()
+    db.execute('INSERT OR IGNORE INTO favoritos (user_id,deck_id) VALUES (?,?)',(id_user,id))
+    db.commit()
+    return redirect(url_for('decks'))
+
+# rota para desfavoritar
+
+@app.route('/desfavoritar/<int:id>')
+def desfavoritar(id):
+    id_user = session.get('usuario_id')
+    print(id_user,id)
+    db = get_db()
+    db.execute('DELETE FROM favoritos WHERE user_id=? AND deck_id=?',(id_user,id))
+    db.commit()
+    return redirect(url_for('decks'))
 
 # executar app
 
