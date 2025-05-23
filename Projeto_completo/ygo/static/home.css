@@ -4,6 +4,14 @@
     padding: 0;
 }
 
+#pesquisar{
+    position: relative;
+    right: 20%;
+    background-color: transparent;
+    border: none;
+}
+
+
 /* pop-up */
 .pop_up{
     display: none;
@@ -134,6 +142,10 @@ nav a{
     height: 50px;
 }
 
+.lixo{
+    width: 50px;
+}
+
 .pesquisa{
     height: 40px;
     width: 200px;
@@ -149,12 +161,25 @@ nav a{
     margin-top: 40px;
 }
 
+#titulo{
+    font-size: 70px;
+}
+
+.aumentar{
+    transition-duration: .5s;
+}
+
+.aumentar:hover{
+    transform: scale(1.1);
+}
+
 .div-noticia{
     justify-content: center;
     align-items: center;
     display: flex;
     margin-top: 50px;
     margin-bottom: 50px;
+    gap: 50px;
 }
 
 .noticia{

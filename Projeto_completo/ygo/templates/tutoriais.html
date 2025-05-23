@@ -66,10 +66,13 @@
         <section class="tutoriais">
             <img class="card" src="{{ url_for('static',filename='uploads/'+tutorial.imagem) }}">
             <div class="textos">
-                <h1>{{ tutorial.titulo }}</h1>
+                <a href="{{ url_for('tutorial',tutorial_id=tutorial['id']) }}">{{ tutorial.titulo }}</a>
                 <br>
                 <p>{{ tutorial.resumo }}</p>
             </div>
+            {% if tipo_user == 'admin' %}
+                <a class="sem_coisa" href="/delete/tutorial/{{tutorial.id}}"><img class="lixo" src="../static/uploads/lixeira.png"></a>
+            {% endif %}
         </section>
         {% endfor %}
         <a href="#navbar" class="botao-flutuante">Voltar ao topo</a>

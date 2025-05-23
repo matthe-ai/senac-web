@@ -2,11 +2,10 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yu Gi Oh db</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='home.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='criar_tutorial.css') }}">
-    <link rel="icon" type="image/webp" href="https://media.printables.com/media/prints/558196/images/4476391_5291ef30-8b78-4b46-8814-29786bf849e4/thumbs/inside/1280x960/webp/tumblr_msd6grr3bx1qk43wto1_500.webp">
+    <link rel="stylesheet" href="{{ url_for('static',filename='tutorial.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial</title>
 </head>
 <body>
     <!--Cabeçalho-->
@@ -56,26 +55,9 @@
         }
     </script>
     </header>
-    <!--Corpo principal-->
     <main class="principal">
-        <h1>Criar tutorial</h1>
-        <section id="sessao">
-            <form method="POST" enctype="multipart/form-data" id="formulario_tutorial">
-                <label>Titulo: </label>
-                <input type="text" placeholder="Nome do tutorial" name="titulo" required>
-                <label>Resumo sobre o tutorial: </label>
-                <textarea name="resumo" rows="10" cols="30" required placeholder="Digite aqui o resumo do tutorial"></textarea>
-                <label>Carta principal do tutorial: </label>
-                <input type="file" required name="imagem_tutorial">
-                <p>png,jpg ou jpeg</p> <br>
-                <label>Texto principal: </label>
-                <textarea name="funcionamento" cols="30" rows="10"></textarea>
-                <button type="submit" id="enviar">Enviar</button>
-            </form>
-            {% if erro %}
-                <p>{{ erro }}</p>
-            {% endif %}
-        </section>
+        <h1 id="titulo">{{ tutorial.titulo }}</h1>
+        <p id="conteudo">{{ tutorial.funcionamento }}</p>
     </main>
 </body>
 </html>

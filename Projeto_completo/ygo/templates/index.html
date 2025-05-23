@@ -60,7 +60,7 @@
     </header>
     <!--Corpo principal-->
     <main class="principal">
-        <h1>Noticias recentes</h1>
+        <h1 id="titulo">Noticias recentes</h1>
         {%for noticia in noticias%}
         <section class="div-noticia">
             <img src="{{ url_for('static',filename='uploads/'+noticia.imagem) }}" class="new-img">
@@ -69,6 +69,9 @@
                 <br>
                 <p>{{ noticia.conteudo }}</p>
             </div>
+            {% if tipo_user == 'admin' %}
+                <a class="aumentar" href="/delete/{{noticia.id}}"><img class="lixo" src="../static/uploads/lixeira.png"></a>
+            {% endif %}
         </section>
         <hr>
         {% endfor %}

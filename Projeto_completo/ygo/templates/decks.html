@@ -70,6 +70,9 @@
                 <p>{{ deck.resumo }}</p>
             </div>
             <img src="../static/uploads/heart.png" alt="coração" class="heart">
+            {% if tipo_user == 'admin' %}
+                <a class="aumentar" href="/delete/deck/{{deck.id}}"><img class="lixo" src="../static/uploads/lixeira.png"></a>
+            {% endif %}
         </section>
         {% endfor %}
         <a href="#navbar" class="botao-flutuante">Voltar ao topo</a>

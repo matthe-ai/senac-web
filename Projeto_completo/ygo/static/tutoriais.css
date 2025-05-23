@@ -29,10 +29,20 @@ body{
     font-family: Sarpanch;
     margin-top: 60px;
     margin-bottom: 60px;
+    align-items: center;
 }
 
-.tutoriais h1{
+.tutoriais a{
     font-size: 50px;
+    color: white;
+    text-decoration: none;
+    transition-duration: .5s;
+    display: inline-block;
+}
+
+.tutoriais a:hover{
+    color: #b18f1d;
+    transform: scale(1.1);
 }
 
 .tutoriais p{

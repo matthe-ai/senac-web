@@ -15,7 +15,7 @@ DATABASE = 'ygo.db'
 app.config['SECRET_KEY'] = 'chave_mattheus'
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
-EXTENSOES = ['png','jpg','jpeg']
+EXTENSOES = ['png','jpg','jpeg','webp']
 
 # email e recuperação de senha
 def senha_email(destinatario,senha):
@@ -96,6 +96,15 @@ def index():
             return render_template('index.html',noticias = noticias, tipo_user = tipo_user)
     return render_template('index.html',noticias = noticias, tipo_user = tipo_user)
 
+# rota para apagar noticia
+
+@app.route('/delete/<int:id>')
+def deletar_noticia(id):
+    db = get_db()
+    db.execute('DELETE FROM noticia WHERE id=?',(id,))
+    db.commit()
+    return redirect(url_for('index'))
+
 # rota para pagina de tutoriais
 
 @app.route('/tutoriais',methods=['GET','POST'])
@@ -111,6 +120,27 @@ def tutoriais():
             return render_template('tutoriais.html',tutoriais = tutoriais, tipo_user = tipo_user)
     return render_template('tutoriais.html',tutoriais = tutoriais,tipo_user=tipo_user)
 
+# rota para apagar um tutorial
+
+@app.route('/delete/<int:id>')
+def deletar_tutorial(id):
+    db = get_db()
+    db.execute('DELETE FROM tutorial WHERE id=?',(id,))
+    db.commit()
+    return redirect(url_for('tutorial'))
+
+# rota para tutorial especifico
+
+@app.route('/tutorial/<int:tutorial_id>')
+def tutorial(tutorial_id):
+    tipo_user = session.get('usuario_tipo')
+    db = get_db()
+    tutorial = db.execute('SELECT * FROM tutorial WHERE id=?',(tutorial_id,)).fetchone()
+    if tutorial:
+        return render_template('tutorial.html',tipo_user=tipo_user,tutorial=tutorial)
+    else:
+        return "Produto não encontrado",404
+
 # rota para pagina de decks
 
 @app.route('/decks',methods=['GET','POST'])
@@ -125,6 +155,15 @@ def decks():
             decks = db.execute('SELECT * FROM deck WHERE titulo LIKE ?',(titulo,)).fetchall()
             return render_template('decks.html',decks = decks, tipo_user = tipo_user)
     return render_template('decks.html',decks = decks,tipo_user=tipo_user)
+
+# rota para apagar deck
+
+@app.route('/delete/deck/<int:id>')
+def deletar_deck(id):
+    db = get_db()
+    db.execute('DELETE FROM deck WHERE id=?',(id,))
+    db.commit()
+    return redirect(url_for('decks'))
 
 # rota para pagina sobre
 
