@@ -28,7 +28,7 @@
         {% if tipo_user == 'normal' %}
             <section class="user_on">
                 <a href="{{ url_for('dados') }}">Dados do usuario</a> <br> <br>
-                <a href="">Decks favoritos</a> <br> <br>
+                <a href="{{ url_for('deck_fav') }}">Decks favoritos</a> <br> <br>
                 <a class="vermelho" href="/logout">Logout</a>
             </section>
         {% elif tipo_user == 'admin' %}
