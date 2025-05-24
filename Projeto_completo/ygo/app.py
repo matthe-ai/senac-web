@@ -154,7 +154,8 @@ def decks():
     id_user = session.get('usuario_id')
     db = get_db()
     decks = db.execute('SELECT * FROM deck').fetchall()
-    favorito = db.execute('SELECT deck_id FROM favoritos WHERE user_id=?',(id_user,)).fetchall()  # não terminado checagem de deck favorito
+    favorito = db.execute('SELECT deck_id FROM favoritos WHERE user_id=?',(id_user,)).fetchall()
+    decks_favoritados = set([f[0] for f in favorito])
     print(favorito)
     if request.method == 'POST':
         titulo = request.form.get('search_deck')
@@ -162,7 +163,7 @@ def decks():
             titulo = f"%{titulo}%"
             decks = db.execute('SELECT * FROM deck WHERE titulo LIKE ?',(titulo,)).fetchall()
             return render_template('decks.html',decks = decks, tipo_user = tipo_user,favorito=favorito)
-    return render_template('decks.html',decks = decks,tipo_user=tipo_user,favorito=favorito)
+    return render_template('decks.html',decks = decks,tipo_user=tipo_user,decks_favoritados=decks_favoritados)
 
 # rota para apagar deck
 
@@ -209,7 +210,6 @@ def login():
 
             usuario = request.form['usuario']
             senha = request.form['senha']
-            print(usuario,senha)
             db = get_db()
             existe_user = db.execute('SELECT * FROM usuarios WHERE usuario=? OR email=? AND senha=?',(usuario,usuario,senha)).fetchone()
             if existe_user:
@@ -265,7 +265,7 @@ def rec_senha():
         email = request.form.get('usuario')
         if email:
             db = get_db()
-            senha = db.execute('SELECT senha FROM usuarios WHERE email=? OR usuario=?',(email,email)).fetchone()
+            senha = db.execute('SELECT senha FROM usuarios WHERE email=?',(email,)).fetchone()
             senha_email(email,senha)
             return redirect(url_for('login'))
     return render_template('rec_senha.html')
@@ -352,35 +352,41 @@ def criar_tutorial():
 
 # rota para deck favorito
 
-
-# não funciona ainda
-
-
 @app.route('/deck_fav')
 def deck_fav():
     tipo_user = session.get('usuario_tipo')
     id_user = session.get('usuario_id')
+    if not id_user:
+        redirect(url_for('login'))
     db = get_db()
-    decks = db.execute('SELECT * FROM favoritos WHERE user_id=?',(id_user,))
-    render_template('deck_fav.html',tipo_user=tipo_user,decks=decks)
+    decks_fav = db.execute('SELECT deck_id FROM favoritos WHERE user_id=?',(id_user,)).fetchall()
+    decks = []
+    for deck in decks_fav:
+        deck_1 = db.execute('SELECT * FROM deck WHERE id=?',(deck[0],)).fetchone()
+        if deck_1:
+            decks.append(deck_1)
+    return render_template('deck_fav.html',tipo_user=tipo_user,decks=decks)
 
 # rota para favoritar
 
-@app.route('/favoritar/<int:id>')
+@app.route('/favoritar/<int:id>',methods=['GET'])
 def favoritar(id):
     id_user = session.get('usuario_id')
-    print(id_user,id)
-    db = get_db()
-    db.execute('INSERT OR IGNORE INTO favoritos (user_id,deck_id) VALUES (?,?)',(id_user,id))
-    db.commit()
+    if id_user:
+        db = get_db()
+        existe = db.execute('SELECT 1 FROM favoritos WHERE user_id=? AND deck_id=?',(id_user,id)).fetchone()
+        if not existe:
+            db.execute('INSERT INTO favoritos (user_id,deck_id) VALUES (?,?)',(id_user,id))
+            db.commit()
+    else:
+        redirect(url_for('login'))
     return redirect(url_for('decks'))
 
 # rota para desfavoritar
 
-@app.route('/desfavoritar/<int:id>')
+@app.route('/desfavoritar/<int:id>',methods=['GET'])
 def desfavoritar(id):
     id_user = session.get('usuario_id')
-    print(id_user,id)
     db = get_db()
     db.execute('DELETE FROM favoritos WHERE user_id=? AND deck_id=?',(id_user,id))
     db.commit()

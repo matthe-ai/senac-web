@@ -34,7 +34,7 @@
         {% elif tipo_user == 'admin' %}
             <section class="user_on">
                 <a href="{{ url_for('dados') }}">Dados do usuario</a> <br>
-                <a href="">Decks favoritos</a> <br>
+                <a href="{{ url_for('deck_fav') }}">Decks favoritos</a> <br>
                 <a href="{{ url_for('criar_tutorial') }}">Criar tutorial</a> <br>
                 <a href="{{ url_for('criar_deck') }}">Criar deck</a> <br>
                 <a href="{{ url_for('criar_noticia') }}">Criar noticia</a> <br>
@@ -69,17 +69,19 @@
                 <h1>{{ deck.titulo }}</h1>
                 <p>{{ deck.resumo }}</p>
             </div>
-                {% if favorito == deck.id %}
-                    <a href="/favoritar/{{deck.id}}">
+                {% if deck.id in decks_favoritados %}
+                    <a href="/desfavoritar/{{deck.id}}">
                         <img src="../static/uploads/heart_preenchido.png" alt="coração" class="heart">
                     </a>
                 {% else %}
-                    <a href="/desfavoritar/{{deck.id}}">
+                    <a href="/favoritar/{{deck.id}}">
                         <img src="../static/uploads/heart.png" alt="coração" class="heart">
                     </a>
                 {% endif %}
             {% if tipo_user == 'admin' %}
-                <a class="aumentar" href="/delete/deck/{{deck.id}}"><img class="lixo" src="../static/uploads/lixeira.png"></a>
+                <a class="aumentar" href="/delete/deck/{{deck.id}}">
+                    <img class="lixo" src="../static/uploads/lixeira.png">
+                </a>
             {% endif %}
         </section>
         {% endfor %}
