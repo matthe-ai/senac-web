@@ -11,3 +11,13 @@
     left: 12.5%;
     padding-bottom: 40px;
 }
+
+@media screen and (max-width: 970px) {
+    #titulo{
+        font-size: 30px;
+    }
+
+    #conteudo{
+        font-size: 20px;
+    }
+}

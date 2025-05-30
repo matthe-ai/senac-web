@@ -46,3 +46,30 @@
 .card{
     width: 300px;
 }
+
+@media screen and (max-width: 970px) {
+    /* principal */
+
+    .deck{
+        width: 90%;
+        flex-direction: column;
+        margin-left: 5%;
+    }
+
+    .card{
+        width: 40%;
+    }
+
+    .texto{
+        width: 100%;
+    }
+
+    .texto > h1{
+        font-size: 30px;
+        width: 100%;
+    }
+
+    .texto > p{
+        font-size: 20px;
+    }
+}

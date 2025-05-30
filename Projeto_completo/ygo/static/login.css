@@ -135,3 +135,21 @@ body{
     transform: rotate(90);
     margin-top: 100px;
 }
+
+@media screen and (max-width: 970px){
+    .flex{
+        flex-direction: column;
+    }
+
+    .branco{
+        width: 100%;
+    }
+
+    .bottom{
+        margin-top: 20px;
+    }
+
+    .vertical{
+        margin-bottom: 100px;
+    }
+}

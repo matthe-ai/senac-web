@@ -108,3 +108,16 @@ body{
     padding: 20px;
     border-radius: 15px;
 }
+
+@media screen and (max-width: 970px){
+    .flex{
+        flex-direction: column;
+    }
+    .branco{
+        width: 90%;
+    }
+
+    .emoje{
+        width: 90%;
+    }
+}

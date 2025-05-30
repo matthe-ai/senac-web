@@ -12,16 +12,16 @@
     <!--Cabeçalho-->
     <header>
         <nav class="nav-sup" id="navbar">
-            <img src="../static/uploads/ygo-md.webp" alt="logo Yu Gi Oh Master Duel" class="logo-ygo">
-            <a href="{{ url_for('tutoriais') }}">Tutoriais/Dicas</a>
-            <a href="{{ url_for('decks') }}">Ver decks</a>
-            <a href="{{ url_for('index') }}"><img src="../static/uploads/Yu-Gi-OhLogo.webp" alt="Logo do Yu Gi Oh" class="logo-central"></a>
-            <form method="POST">
-                <input class="pesquisa" type="search" placeholder="Pesquisar tutorial" name="search_tuto">
+            <img id="logo" src="../static/uploads/ygo-md.webp" alt="logo Yu Gi Oh Master Duel" class="logo-ygo">
+            <a id="tutoriais" href="{{ url_for('tutoriais') }}">Tutoriais/Dicas</a>
+            <a id="decks" href="{{ url_for('decks') }}">Ver decks</a>
+            <a id="index" href="{{ url_for('index') }}"><img src="../static/uploads/Yu-Gi-OhLogo.webp" alt="Logo do Yu Gi Oh" class="logo-central"></a>
+            <form id="pesquisa" method="POST">
+                <input class="pesquisa" type="search" placeholder="Pesquisar noticia" name="search_not">
                 <button type="submit" style="display: none;"></button>
             </form>
-            <a href="{{ url_for('sobre') }}">Sobre nós</a>
-            <img onclick="mostarPopup()" class="perfil" src="../static/uploads/perfil.png" alt="Perfil">
+            <a id="sobre" href="{{ url_for('sobre') }}">Sobre nós</a>
+            <img id="user" onclick="mostarPopup()" class="perfil" src="../static/uploads/perfil.png" alt="Perfil">
         </nav>
     <!-- pop-up -->
     <div id="popup" class="pop_up">

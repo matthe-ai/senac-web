@@ -59,3 +59,29 @@ body{
 .textos{
     width: 30%;
 }
+
+@media screen and (max-width: 970px) {
+    /* principal */
+
+    .tutoriais{
+        width: 90%;
+        flex-direction: column;
+        margin-left: 5%;
+    }
+
+    .card{
+        width: 40%;
+    }
+
+    .textos{
+        width: 100%;
+    }
+
+    .textos > a{
+        font-size: 30px;
+    }
+
+    .textos > p{
+        font-size: 20px;
+    }
+}
